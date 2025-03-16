@@ -1,0 +1,50 @@
+//versioning
+syntax="proto3";
+
+import "google/protobuf/timestamp.proto";
+
+package com.amarthya;
+
+// To generate each file/message in different class
+option java_multiple_files=true;
+// To define package for generated classes
+option java_package="com.amarthya";
+
+option java_outer_classname="EmployeeProto";
+
+// same like class in java
+message Employee{
+  // below numbers are field tags/numbers
+  //proto buff will use field tags 1,2 instead of field names like id,name
+  int32 id=1;
+  string name=2;
+  double salary=3;
+  repeated Department departments=4;
+  map<string, string> addressMap=5;
+  bool isActive=6;
+  bytes profilePicture=7;
+  google.protobuf. Timestamp joinDate=8;
+}
+
+message Department{
+  int32 id=1;
+  string name=2;
+}
+
+message EmployeeList{
+  repeated Employee employees=1;
+}
+
+message Empty{
+
+}
+
+// same like interface in java
+service EmployeeService{
+// get employee by id
+    rpc getEmployee (Employee) returns (Employee);
+
+    rpc addEmployee (Employee) returns (Employee);
+  // proto buf does'nt accept empty, so need to create an Empty object
+    rpc getAllEmployees (Empty) returns (EmployeeList);
+}
