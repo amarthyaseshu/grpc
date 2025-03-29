@@ -3,7 +3,9 @@ syntax = "proto3";
 
 package stocktrading;
 option  java_multiple_files=true;
+// Package for generating Req & Res classes
 option java_package="com.javatechie.grpc";
+// Club Req & Res Cls in a single class
 option  java_outer_classname="StockTradingProto";
 
 
